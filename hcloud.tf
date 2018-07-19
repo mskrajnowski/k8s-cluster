@@ -15,8 +15,6 @@ resource "hcloud_server" "k8s_master" {
   image       = "debian-9"
   location    = "nbg1"
 
-  user_data = "${file("./cloud-init/k8s_master.yaml")}"
-
   ssh_keys = [
     "${hcloud_ssh_key.mskrajnowski.name}",
   ]
