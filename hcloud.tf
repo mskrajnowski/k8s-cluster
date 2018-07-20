@@ -37,8 +37,6 @@ resource "hcloud_server" "k8s_master" {
     inline = [
       "sysctl net.bridge.bridge-nf-call-iptables=1",
       "kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=${self.ipv4_address} --apiserver-cert-extra-sans=${self.ipv4_address}",
-      "export KUBECONFIG=/etc/kubernetes/admin.conf",
-      "kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.10.0/Documentation/kube-flannel.yml",
     ]
   }
 
