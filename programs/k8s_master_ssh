@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+address="$1"
+program="$2"
+
+ssh \
+    -o StrictHostKeyChecking=no \
+    -o UserKnownHostsFile=/dev/null \
+    $address sh <"$program"

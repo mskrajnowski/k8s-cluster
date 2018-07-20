@@ -1,0 +1,16 @@
+#!/bin/sh
+
+set -e
+
+token=$(kubeadm token create --ttl 1h)
+hash=$(
+    openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt |
+    openssl rsa -pubin -outform der 2>/dev/null |
+    openssl dgst -sha256 -hex |
+    sed 's/^.* //'
+)
+
+jq -n \
+    --arg token "$token" \
+    --arg hash "$hash" \
+    '{"token": $token, "hash": $hash}'
