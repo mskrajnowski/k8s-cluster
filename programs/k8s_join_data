@@ -2,6 +2,11 @@
 
 set -e
 
+if [ ! -f /root/.kube/config ]; then
+    echo '{"token": "", "hash": ""}'
+    exit 0
+fi
+
 token=$(kubeadm token create --ttl 1h)
 hash=$(
     openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt |
