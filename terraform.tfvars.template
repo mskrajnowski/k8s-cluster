@@ -1,0 +1,5 @@
+hcloud_token = ""
+hcloud_k8s_image = ""
+
+cloudflare_email = ""
+cloudflare_token = ""
